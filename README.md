@@ -85,12 +85,12 @@ flowchart TD
 ```
 
 ---
-### subprojects which will help SACA work
-- AI prompt optimizer - given a prompt, patches and adds additional information to it to achieve the best answer from the AI
-- Code Vulnerability Searcher AI model
+### Utilities Subprojects of SACA
+- AI prompt optimizer - given a prompt, patches and adds additional information to it to achieve the best answer from the AI - 
 - a Docker-driven sandbox which will allow the AI (or the dynamic debugging tools to run the sets of tests and search for bugs)
 
 
+# POC
 ## What the VS Code Extension Does
 
 The included VS Code extension (`saca`) adds a command:
@@ -198,17 +198,6 @@ Run SACA command:
 - A diff view shows the revised version.
 - You choose to apply or skip changes.
 
-## Roadmap / Future Plans
-SACA currently focuses on formatting + review + optional revision.
-Future versions aim to provide:
-
-- 🔜 Static analysis integration (clang-tidy, radare2, static analyzers).
-- 🔜 Dynamic testing harness (valgrind, gdb scripts, runtime checks).
-- 🔜 AI prompt optimizer – generate better AI prompts when code fails checks.
-- 🔜 Vulnerability model – use an AI trained on CVEs to detect unsafe patterns.
-- 🔜 Multi-language support – extend beyond C/C++ into Python, Rust, Java.
-- 🔜 CI/CD integration – plug into GitHub Actions or pipelines for automated review.
-
 ## Development Notes
 - The extension logs everything to the “SACA” output channel.
 - review.py can run in:
@@ -219,4 +208,16 @@ Future versions aim to provide:
 ## Disclaimer
 This is an experimental prototype.
 It should not be relied upon as a sole security measure. Always perform manual reviews for critical code.
+
+## Roadmap / Future Plans
+SACA currently focuses on making the code from the AI to compile on your machine
+
+Future versions aim to provide Sifters:
+
+- 🔜 Sandbox execution environment.
+- 🔜 Static analysis integration (clang-tidy, clang-format).
+- 🔜 Dynamic analysis (valgrind, clang sanitizers).
+- 🔜 Vulnerability model – use an AI trained on CVEs to detect unsafe patterns.
+- 🔜 Multi-language support – extend beyond C/C++ into Python, Rust, Java.
+- 🔜 Full AI Agent that does everything
 
