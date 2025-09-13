@@ -1,0 +1,40 @@
+{
+  "name": "saca-format-and-revise",
+  "displayName": "SACA: clang-format & ChatGPT Review + Apply",
+  "description": "Formats the current file with clang-format, gets a ChatGPT review + proposed revision, and lets you apply changes (all or per hunk).",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:saca.formatAndRevise"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "saca.formatAndRevise",
+        "title": "SACA: clang-format + ChatGPT Review (Apply changes)"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/node": "^20.12.7",
+    "@types/vscode": "^1.88.0",
+    "typescript": "^5.4.0",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "diff": "^5.1.0"
+  }
+}
