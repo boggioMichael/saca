@@ -1,4 +1,4 @@
-# SOCA - Safety AI Code Approval 
+# SACA - Safety AI Code Approval 
 
 ~ another name maybe: sacred - safety AI code reassurance to ensure deployment 
 
@@ -13,21 +13,18 @@ It acts as a safeguard that takes as input the AI-generated code and passes it t
 kinds of sift (bug/vulns/memory/logical) which run both dynamically and statically before the code is getting
 reviewed by a human (or hopefully just used straight in production :))
 
-The ultimate goal of SACA is to be integrated into every AI code-generating model. This will substantially (and hopefully perfectly) 
-remove all bugs that the AI might have created.
-
 ---
 
 ## Restrications 
 
-** This project is not using AI to function AT ALL. **
-  To be a safety net for the black box, which is an 
-  AI, we cannot use AI itself. SACA is completely algorithm-based and entirely based on tested, reliable, real, hand-made code and
-  tools such as clang-tidy, valgrind, code sanitizers, gdb, etc... 
+The project will mainly be implemented using classic algorithms, in contructs to using ML blackbox
+To be a safety net for the black box, which is an 
+AI, we cannot use the blackbox itself. SACA is completely algorithm-based and entirely based on tested, reliable, real, hand-made code and
+tools such as clang-tidy, valgrind, code sanitizers, gdb, etc... 
 
-  One exception, of course, will be the vulnerability sifter part of SACA.
-  Since vulnerability searching requires creative and thinking-like abilities, we have to use a generative 
-  model based on different CVEs and CVEs fixes in addition to the current knowledge of the AI.
+One exception, of course, will be the vulnerability sifter part of SACA.
+Since vulnerability searching requires creative and thinking-like abilities, we have to use a generative 
+model based on different CVEs and CVEs fixes in addition to the current knowledge of the AI.
 
 ---
 
@@ -54,34 +51,32 @@ Only then will the AI model finally spit out the result to the user.
 flowchart TD
   %% Inputs / Outputs
   A[AI Code Generator or User Code] -->|proposed code| B[Code Intake]
-  Z[Human Reviewer optional] -->|manual review| N
-  N -->|approved artifact| AA[Artifact Registry]
+  Z[Human Reviewer optional] -->|manual review| N[Result Packaging]
+  N --> AA[Artifact Registry]
   AA --> AB[CI/CD Deploy]
 
   %% SACA Pipeline
   subgraph S[SACA Pipeline]
     direction TB
     B --> C[Build and Compile]
-    C --> D{Compiles?}
-    D -- No --> R1[Compiler Diagnostics] --> Q
-    D -- Yes --> E
+    C --> D{Compiles}
+    D -- No --> R1[Compiler Diagnostics] --> Q[Fix Loop Controller]
+    D -- Yes --> E1[Formatting and Style]
 
     %% Code Sifters group
     subgraph CS[Code Sifters]
-      E[Static Analyzers]
-      E --> F[Formatting and Style]
-      F --> G[Unit and Property Tests]
-      G --> H[Dynamic Analyzers]
-      H --> I[Fuzzing]
-      I --> J[Perf and Resource Checks]
-      J --> K[Logic and Spec Checks]
-      K --> L[Security and Vuln Sifter *]
-      L --> M[Policy Gates]
+      direction TB
+      E1 --> E2[Correctness]
+      E2 --> E3[Static Analyzers]
+      E3 --> E4[Dynamic Analyzers]
+      E4 --> E5[Perf and Resource Checks]
+      E5 --> E6[Format Verification Academia]
+      E6 --> E7[Security and Vuln Model]
     end
 
-    M --> O{All Tests Pass?}
-    O -- Yes --> N[Result Packaging]
-    O -- No --> Q[Fix Loop Controller]
+    E7 --> M{All Tests Pass}
+    M -- Yes --> N
+    M -- No --> Q
   end
 
   %% Feedback Loop
