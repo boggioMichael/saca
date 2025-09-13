@@ -214,10 +214,11 @@ SACA currently focuses on making the code from the AI to compile on your machine
 
 Future versions aim to provide Sifters:
 
+- 🔜 Skeleton of AI agent
 - 🔜 Sandbox execution environment.
 - 🔜 Static analysis integration (clang-tidy, clang-format).
 - 🔜 Dynamic analysis (valgrind, clang sanitizers).
 - 🔜 Vulnerability model – use an AI trained on CVEs to detect unsafe patterns.
 - 🔜 Multi-language support – extend beyond C/C++ into Python, Rust, Java.
-- 🔜 Full AI Agent that does everything
+- 🔜 Full AI Agent 
 
