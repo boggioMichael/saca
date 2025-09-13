@@ -70,11 +70,11 @@ flowchart TD
       E2 --> E3[Static Analyzers]
       E3 --> E4[Dynamic Analyzers]
       E4 --> E5[Perf and Resource Checks]
-      E5 --> E6[Format Verification Academia]
+      E5 --> E6[Formal Verification Academia]
       E6 --> E7[Security and Vuln Model]
     end
 
-    E7 --> M{All Tests Pass}
+    E7 --> M{All Sifts Pass}
     M -- Yes --> N
     M -- No --> Q
   end
